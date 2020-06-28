@@ -1,4 +1,4 @@
-import { IsString, MaxLength, MinLength, IsDate, IsNotEmpty } from "class-validator";
+import { IsString, MaxLength, MinLength, IsDate, IsNotEmpty, IsDateString, IsISO8601 } from "class-validator";
 import { Exclude } from 'class-transformer';
 
 export class CreatePollDto {
@@ -10,11 +10,11 @@ export class CreatePollDto {
   title: string;
 
   @IsNotEmpty()
-  @IsDate()
+  @IsISO8601()
   startDate: Date;
 
   @IsNotEmpty()
-  @IsDate()
+  @IsISO8601()
   endDate: Date;
 
   @Exclude()
