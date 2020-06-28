@@ -5,7 +5,7 @@ import IAudit from "./audit.interface";
 
 @Entity()
 @Unique(['username'])
-export class User extends BaseEntity implements IAudit {
+export class User extends BaseEntity {
 
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -18,18 +18,6 @@ export class User extends BaseEntity implements IAudit {
 
   @Column()
   salt: string;
-
-  @Column()
-  createdBy: string;
-
-  @Column()
-  modifiedBy: string;
-
-  @Column()
-  creationDate: Date;
-  
-  @Column()
-  updateDate: Date;
 
   @OneToMany(type => Poll, poll => poll.user, { eager: true })
   polls: Poll[];  

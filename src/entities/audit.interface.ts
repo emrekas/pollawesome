@@ -1,6 +1,6 @@
 export default interface IAudit{
   createdBy: string;
-  modifiedBy: string;
+  modifiedBy?: string;
   creationDate: Date;
-  updateDate: Date;
+  updateDate?: Date;
 }

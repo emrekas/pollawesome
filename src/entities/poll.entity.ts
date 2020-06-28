@@ -21,14 +21,14 @@ export class Poll extends BaseEntity implements IAudit {
   @Column()
   createdBy: string;
 
-  @Column()
-  modifiedBy: string;
+  @Column({nullable: true})
+  modifiedBy?: string;
 
   @Column()
   creationDate: Date;
   
-  @Column()
-  updateDate: Date;
+  @Column({nullable: true})
+  updateDate?: Date;
 
   @Column('varchar')
   userId: string;
