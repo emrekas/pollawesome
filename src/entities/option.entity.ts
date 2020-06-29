@@ -11,11 +11,8 @@ export class Option extends BaseEntity implements IAudit {
   @Column('varchar')
   content: string;
 
-  @Column()
+  @Column({nullable:true})
   voteCount: number;
-
-  @Column()
-  votedByUserId: string;
 
   @Column()
   createdBy: string;

@@ -16,7 +16,7 @@ import { UserRepository } from './user.repository';
     JwtModule.register({
       secret: "veryverysecretkey",
       signOptions: {
-        expiresIn: 36000
+        expiresIn: 360000
       }
     })
   ],
