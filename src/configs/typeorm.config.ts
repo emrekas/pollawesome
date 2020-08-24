@@ -1,12 +1,9 @@
-import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
+console.log(process.env.DATABASE_URL);
 export const typeOrmConfig: TypeOrmModuleOptions = {
-    type: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    username: 'postgres',
-    password: 'postgres',
-    database: 'poll',
-    entities: [__dirname + '/../**/*.entity.{js,ts}'],
-    synchronize: true
-}
+  type: 'postgres',
+  url: process.env.DATABASE_URL,
+  entities: [__dirname + '/../**/*.entity.{js,ts}'],
+  synchronize: true,
+};
