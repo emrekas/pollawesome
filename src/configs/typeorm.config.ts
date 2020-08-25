@@ -8,6 +8,6 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
   synchronize: true,
   extra: {
-    ssl: process.env.SSL || false,
+    ssl: true,
   },
 };
