@@ -17,7 +17,7 @@ export class OptionRepository extends Repository<Option>{
       throw new NotFoundException();
     }
 
-    var option = new Option();
+    const option = new Option();
     option.content = content;
     option.pollId = pollId;
     option.createdBy = userId;
