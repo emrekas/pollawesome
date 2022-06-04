@@ -11,7 +11,7 @@ export class OptionRepository extends Repository<Option>{
     const pollRepository = getCustomRepository(PollRepository);
     const { content, pollId, userId } = createOptionDto;
 
-    const found = await pollRepository.findOne({userId, id:pollId});
+    const found = await pollRepository.findOne({where: {userId, id:pollId}});
 
     if (!found) {
       throw new NotFoundException();
