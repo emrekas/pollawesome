@@ -1,4 +1,4 @@
-import { Controller, Post, UsePipes, ValidationPipe, UseGuards, Body, Delete } from '@nestjs/common';
+import { Controller, Post, UsePipes, ValidationPipe, UseGuards, Body, Delete, Get } from '@nestjs/common';
 import { OptionService } from './option.service';
 import { CreateOptionDto } from './dto/create-option.dto';
 import { Option } from 'entities/option.entity';
@@ -23,6 +23,13 @@ export class OptionController {
 
     createOptionDto.userId = user.id;
     return this.optionService.createOption(createOptionDto);
+  }
+
+  @Get()
+  async getOptions(
+    @GetUser() user: User
+  ): Promise<Option[]> {
+    return this.optionService.getOptions();
   }
 
   @Delete()

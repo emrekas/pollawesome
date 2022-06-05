@@ -16,6 +16,10 @@ export class OptionService {
     return this.optionRepository.createOption(createOptionDto);
   }
 
+  async getOptions(): Promise<Option[]> {
+    return this.optionRepository.find();
+  }
+
   async deleteOption(deleteOptionDto: DeleteOptionDto): Promise<void> {
     const { id, userId, pollId } = deleteOptionDto;
     console.log(deleteOptionDto);
