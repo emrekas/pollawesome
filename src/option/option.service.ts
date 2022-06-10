@@ -1,19 +1,36 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { OptionRepository } from './option.repository';
-import { InjectRepository } from '@nestjs/typeorm';
 import { CreateOptionDto } from './dto/create-option.dto';
 import { Option } from "entities/option.entity";
 import { DeleteOptionDto } from './dto/delete-option.dto';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Poll } from 'entities/poll.entity';
 
 @Injectable()
 export class OptionService {
   constructor(
-    @InjectRepository(OptionRepository)
-    private optionRepository: OptionRepository
+    @InjectRepository(Option)
+    private optionRepository: Repository<Option>,
+    @InjectRepository(Poll)
+    private pollRepository: Repository<Poll>
   ) { }
 
   async createOption(createOptionDto: CreateOptionDto): Promise<Option> {
-    return this.optionRepository.createOption(createOptionDto);
+    const { content, pollId, userId } = createOptionDto;
+
+    const found = await this.pollRepository.findOne({where: {userId, id:pollId}});
+
+    if (!found) {
+      throw new NotFoundException();
+    }
+
+    const option = new Option();
+    option.content = content;
+    option.pollId = pollId;
+    option.createdBy = userId;
+    option.creationDate = new Date();
+
+    return await option.save();
   }
 
   async getOptions(): Promise<Option[]> {

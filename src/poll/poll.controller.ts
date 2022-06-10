@@ -18,6 +18,7 @@ export class PollController {
     @Body() createPollDto: CreatePollDto,
     @GetUser() user: User
   ): Promise<Poll> {
+    console.log("aaa");
     
     createPollDto.userId = user.id;
     return this.pollService.createPoll(createPollDto);
