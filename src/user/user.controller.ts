@@ -9,8 +9,6 @@ export class UserController {
 
   @Post('/register')
   register(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<void> { 
-    console.log("aaa");
-    
     return this.authService.register(authCredentialsDto);
   }
 
