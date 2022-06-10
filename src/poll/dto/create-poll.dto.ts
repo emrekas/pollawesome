@@ -1,22 +1,28 @@
-import { IsString, MaxLength, MinLength, IsDate, IsNotEmpty, IsDateString, IsISO8601 } from "class-validator";
-import { Exclude } from 'class-transformer';
+import {
+  IsString,
+  MaxLength,
+  MinLength,
+  IsNotEmpty,
+  IsISO8601,
+} from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { BaseDto } from 'commons/dto/base.dto';
 
-export class CreatePollDto {
-  
+export class CreatePollDto extends BaseDto {
   @IsString()
   @IsNotEmpty()
   @MaxLength(30)
   @MinLength(4)
+  @ApiProperty()
   title: string;
 
   @IsNotEmpty()
   @IsISO8601()
+  @ApiProperty()
   startDate: Date;
 
   @IsNotEmpty()
   @IsISO8601()
+  @ApiProperty()
   endDate: Date;
-
-  @Exclude()
-  userId: string;
 }
